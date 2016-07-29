@@ -7,7 +7,7 @@ import java.awt.*;
  class Texteditor extends Frame 
  {  
 	 TextArea ta=new TextArea();  
-	
+	boolean IsEdit;
 	 public Texteditor()  
 	 {   
 	 	 customKeyListener cstmKeyListen = new customKeyListener(this);
@@ -29,7 +29,7 @@ import java.awt.*;
 			this.setLocation(x, y);
 			this.setVisible(true);
 			setAlwaysOnTop( true );
-		
+		IsEdit = false;
 	 }  
 	
 	 public class MyWindowsAdapter extends WindowAdapter  
