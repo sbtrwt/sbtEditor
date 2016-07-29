@@ -5,7 +5,7 @@ public class Encoder{
 	public int Decode(int value){
 		return value^key;
 	}
-	public int Decode(char value){
+	/*public int Decode(char value){
 		return value^key;
-	}
+	}*/
 }
