@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 
 public class EditFile {
   static String strLastContent;
-  
+  static Encoder objEncode = new Encoder();
     public static void Save(String strFileName, String strContent) throws IOException{
           FileWriter out = null;
           try{
@@ -24,7 +24,7 @@ public class EditFile {
 		char[] charArray = strContent.toCharArray();
          int indx =0 , Length = charArray.length;
          while (indx < Length) {
-            out.write(charArray[indx++]);
+            out.write(objEncode.Decode(charArray[indx++]));
          }
       
         }finally {
@@ -40,7 +40,7 @@ public class EditFile {
 			inputReader = new FileReader(inputFile);
 			int c;
 			while ((c = inputReader.read()) != -1) {
-			strLastContent += String.valueOf(c);
+			strLastContent += String.valueOf(Character.toChars(objEncode.Decode(c)));
 			}
 		}		finally{
 			if(inputReader != null){

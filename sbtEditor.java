@@ -6,14 +6,14 @@ import java.awt.*;
  //Texteditor class starts here  
  class Texteditor extends Frame 
  {  
-	 TextArea ta=new TextArea();  
-	
+	 TextArea taMainContent=new TextArea();  
+	boolean IsEdit;
 	 public Texteditor()  
 	 {   
 	 	 customKeyListener cstmKeyListen = new customKeyListener(this);
 		 this.addKeyListener(cstmKeyListen);
-		 ta.addKeyListener(cstmKeyListen);
-		 add("Center",ta); 
+		 taMainContent.addKeyListener(cstmKeyListen);
+		 add("Center",taMainContent); 
 		 MyWindowsAdapter mw=new MyWindowsAdapter(this);  
 		 addWindowListener(mw); 
 
@@ -29,7 +29,10 @@ import java.awt.*;
 			this.setLocation(x, y);
 			this.setVisible(true);
 			setAlwaysOnTop( true );
-		
+		IsEdit = false;
+		try{
+		taMainContent.setText(EditFile.load("sbt.txt"));
+		}catch(IOException e){}
 	 }  
 	
 	 public class MyWindowsAdapter extends WindowAdapter  
@@ -57,7 +60,7 @@ import java.awt.*;
 	 }//Inner class winadapter end.... 
 	 public void saveFile(String strPath){
 	 	 try{
-	 	 EditFile.Save(strPath,ta.getText().toString());
+	 	 EditFile.Save(strPath,taMainContent.getText().toString());
 	 	 }catch(IOException e){}
 	 }
 	

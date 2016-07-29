@@ -14,8 +14,8 @@ public class customKeyListener implements KeyListener {
                 }
 	}
    @Override
-	public void keyReleased(KeyEvent e) {System.out.println("key Pressed....");}
+	public void keyReleased(KeyEvent e) {}
    @Override
-	public void keyTyped(KeyEvent e){System.out.println("key Pressed....");}
+	public void keyTyped(KeyEvent e){}
 
 }
