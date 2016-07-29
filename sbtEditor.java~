@@ -2,7 +2,7 @@ import java.awt.*;
  import java.awt.event.*;  
  import java.io.*;  
  import java.util.*; 
- 
+
  //Texteditor class starts here  
  class Texteditor extends Frame implements ActionListener ,WindowListener
  {  
@@ -24,7 +24,6 @@ import java.awt.*;
 			int y = (int) rect.getMaxY() - this.getHeight();
 			this.setLocation(x, y);
 			this.setVisible(true);
-			setAlwaysOnTop( true );
 	 }  
 	 public void actionPerformed(ActionEvent ae)  
 	 {  
@@ -57,11 +56,8 @@ public	 void windowDeactivated(WindowEvent e) {ta.setText("window deactivated");
  public class sbtEditor  
  {
  	 public static void main(String args[])  
-	 {  try{
-	 	 Texteditor to=new Texteditor();  
-	 	 EditFile.Save("test.txt"," not try try try");
-	 	 }
-	 	 catch(Exception e){}
+	 {  
+	 Texteditor to=new Texteditor();  
 	 }  
  }  
  
