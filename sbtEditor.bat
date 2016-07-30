@@ -1,0 +1,1 @@
+javaw -Xmx200m -jar e:\0000_project\000000current_proj\sbtEditor\sbtEditor.jar
