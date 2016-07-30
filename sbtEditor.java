@@ -8,7 +8,7 @@ import java.awt.*;
  //Texteditor class starts here  
  class Texteditor extends Frame 
  {
- 	public final String fileName = "sbt.work";
+ 	public static final String fileName = "sbt.work";
 	final TrayIcon trayIcon;
 	PopupMenu popup;
 	TextField tfCmd = new TextField();
@@ -192,4 +192,3 @@ import java.awt.*;
 	 	 catch(Exception e){}
 	 }  
  }  
- 

@@ -35,15 +35,22 @@ public class EditFile {
     }
     
      public static String load( String inputFile) throws IOException {
+     	 
+     
 		FileReader inputReader = null;
+		strLastContent="";
 		try{
-			inputReader = new FileReader(inputFile);
-			int c;
-			while ((c = inputReader.read()) != -1) {
-			strLastContent += String.valueOf(Character.toChars(objEncode.Decode(c)));
+			File file = new File(inputFile);
+            if (file.exists() && file.isFile()){
+				inputReader = new FileReader(inputFile);
+				int c;
+				while ((c = inputReader.read()) != -1) {
+					strLastContent += String.valueOf(Character.toChars(objEncode.Decode(c)));
+					}
+				}
 			}
-		}		finally{
-			if(inputReader != null){
+			finally{
+				if(inputReader != null){
 					inputReader.close();
 			}
 		}

@@ -10,7 +10,7 @@ public class customKeyListener implements KeyListener {
    @Override
 	public void keyPressed(KeyEvent e){
 	    if ((e.getKeyCode() == KeyEvent.VK_S) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
-                   teKeyEvent.saveFile("sbt.txt");
+                   teKeyEvent.saveFile(Texteditor.fileName);
                 }
 	}
    @Override
