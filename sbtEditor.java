@@ -4,11 +4,13 @@ import java.awt.*;
  import java.util.*; 
  import java.awt.image.BufferedImage;
  import javax.imageio.ImageIO;
- 
+ import java.text.*;
  //Texteditor class starts here  
  class Texteditor extends Frame 
  {
- 	public static final String fileName = "sbt.work";
+ 	public static final String filepath = "data\\";
+ 	public static  String fileName = "data\\sbt.work";
+ 	//public static  final String fileName = "sbt.work";
 	final TrayIcon trayIcon;
 	//String strCmd;
 	PopupMenu popup;
@@ -17,7 +19,10 @@ import java.awt.*;
 	boolean IsEdit;
 	GridBagConstraints c = new GridBagConstraints();
 	 public Texteditor()  //constructor Texteditor
-	 {   
+	 {  
+	 	 //createFilepath(filepath);
+	 	 this.fileName= filepath + getDefaultFName();
+	 	 System.out.println(this.fileName);
 	 	 setUndecorated(true);//title bar removed
 	
 	 	// setIconImage(Toolkit.getDefaultToolkit().getImage("image/sbtwork.png"));
@@ -179,6 +184,23 @@ import java.awt.*;
 		 	 	 imgFound = ImageIO.read(imgStream);
 			 }catch(IOException e){ System.err.println("Image not found");}
 		return imgFound;
+	}
+	//file name
+	public String getDefaultFName(){
+		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		Date dateobj = new Date();
+		System.out.println(df.format(dateobj)+".sbt");
+		return df.format(dateobj)+".sbt";
+	}
+	public void createFilepath(String path){
+	 File file = new File(path);
+	 	   if (!file.exists()) {
+            if (file.mkdir()) {
+                System.out.println("Directory is created!");
+            } else {
+                System.out.println("Failed to create directory!");
+            }
+        }
 	}
 	
 	//command functions

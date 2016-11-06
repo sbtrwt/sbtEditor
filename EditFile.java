@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class EditFile {
   static String strLastContent;
@@ -12,13 +15,17 @@ public class EditFile {
     public static void Save(String strFileName, String strContent) throws IOException{
           FileWriter out = null;
           try{
+          	  System.out.println(strFileName);
+          	  
             File file = new File(strFileName);
+            
             if (file.exists() && file.isFile()){
-            load(strFileName);
+            	load(strFileName);
+            }else{file.getParentFile().mkdirs();}
+           
+            if(strLastContent != null && !strLastContent.isEmpty())
+            {
             }
-      if(strLastContent != null && !strLastContent.isEmpty())
-      	  {
-      	  }
          out = new FileWriter(strFileName,true);
          
 		char[] charArray = strContent.toCharArray();

@@ -23,7 +23,7 @@ public class customKeyListener implements KeyListener {
 		  	  teKeyEvent.clearCmd();
 		  }
 		   if(teKeyEvent.getCmd().equals("save")){ //save file 
-		  	 teKeyEvent.saveFile(Texteditor.fileName);
+		  	 teKeyEvent.saveFile(teKeyEvent.fileName);
 		  	 teKeyEvent.clearCmd();
 		  }
 		    if(teKeyEvent.getCmd().equals("hide")){ //hide 
