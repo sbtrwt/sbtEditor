@@ -10,6 +10,7 @@ import java.awt.*;
  {
  	public static final String fileName = "sbt.work";
 	final TrayIcon trayIcon;
+	//String strCmd;
 	PopupMenu popup;
 	TextField tfCmd = new TextField();
 	TextArea taMainContent=new TextArea();  
@@ -36,13 +37,11 @@ import java.awt.*;
 		int x = (int) rect.getMaxX() - this.getWidth();
 		int y = (int) rect.getMaxY() - this.getHeight();
 		this.setLocation(x, y);
-		this.setVisible(true);
+		
 		setAlwaysOnTop( true );
 		
 		IsEdit = false;
-		try{
-			taMainContent.setText(EditFile.load(fileName));//Loading previous content
-		}catch(IOException e){}
+		//loadContent(); // load previous content
 		//code for adding key listener
 	 	 customKeyListener cstmKeyListen = new customKeyListener(this);
 		 this.addKeyListener(cstmKeyListen);
@@ -122,7 +121,7 @@ import java.awt.*;
 			trayIcon.addMouseListener(mouseListener);
 		
 			ShowTrayIcon();
-		
+			this.setVisible(true);
 	 }  
 	
 	 public class MyWindowsAdapter extends WindowAdapter  //window event adapter class
@@ -155,7 +154,8 @@ import java.awt.*;
 	 }//Inner class winadapter end.... 
 	 public void saveFile(String strPath){
 	 	 try{
-	 	 EditFile.Save(strPath,taMainContent.getText().toString());
+	 	 	 EditFile.Save(strPath,taMainContent.getText().toString());
+	 	 	 taMainContent.setText("");
 	 	 }catch(IOException e){}
 	 }
 	
@@ -179,6 +179,27 @@ import java.awt.*;
 		 	 	 imgFound = ImageIO.read(imgStream);
 			 }catch(IOException e){ System.err.println("Image not found");}
 		return imgFound;
+	}
+	
+	//command functions
+	public String getCmd(){return tfCmd.getText();}
+	public void loadContent(){
+		try{
+			taMainContent.setText(EditFile.load(fileName));//Loading previous content
+		}catch(IOException e){}
+	}
+	public void clearContent(){
+			taMainContent.setText("");   //clear content
+	}
+	public void clearCmd(){
+			tfCmd.setText("");   //clear command
+	}
+	public void hideOn(){
+			this.setVisible(false);//hide
+	}
+	public void exit(){ //exit
+		System.out.println("Exiting...");
+		System.exit(0);
 	}
  }//End of Texteditor class  
  public class sbtEditor  

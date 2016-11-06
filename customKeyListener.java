@@ -12,6 +12,28 @@ public class customKeyListener implements KeyListener {
 	    if ((e.getKeyCode() == KeyEvent.VK_S) && ((e.getModifiers() & KeyEvent.CTRL_MASK) != 0)) {
                    teKeyEvent.saveFile(Texteditor.fileName);
                 }
+		if ((e.getKeyCode() == KeyEvent.VK_ENTER)) {
+		 
+		  if(teKeyEvent.getCmd().equals("open")){ //open file 
+		  	  teKeyEvent.loadContent();
+		  	  teKeyEvent.clearCmd();
+		  }
+		   if(teKeyEvent.getCmd().equals("clear")){ //clear file 
+		  	  teKeyEvent.clearContent();
+		  	  teKeyEvent.clearCmd();
+		  }
+		   if(teKeyEvent.getCmd().equals("save")){ //save file 
+		  	 teKeyEvent.saveFile(Texteditor.fileName);
+		  	 teKeyEvent.clearCmd();
+		  }
+		    if(teKeyEvent.getCmd().equals("hide")){ //hide 
+		  	 teKeyEvent.hideOn();
+		  	 teKeyEvent.clearCmd();
+		  }
+		   if(teKeyEvent.getCmd().equals("exit")){ //exit 
+		  	 teKeyEvent.exit();
+		  }
+		}
 	}
    @Override
 	public void keyReleased(KeyEvent e) {}
