@@ -15,19 +15,39 @@ public class customKeyListener implements KeyListener {
 		if ((e.getKeyCode() == KeyEvent.VK_ENTER)) {
 		 
 		  if(teKeyEvent.getCmd().equals("open")){ //open file 
-		  	  teKeyEvent.loadContent();
-		  	  teKeyEvent.clearCmd();
-		  }
+		  	  	if( teKeyEvent.getParameter().isEmpty()){
+					teKeyEvent.loadContent();
+					teKeyEvent.clearCmd();
+					}
+				else{
+					teKeyEvent.fileName =teKeyEvent.setDefaultFName( teKeyEvent.getParameter());
+					teKeyEvent.loadContent();
+					teKeyEvent.clearCmd();
+				}
+			}
+		  		
 		   if(teKeyEvent.getCmd().equals("clear")){ //clear file 
 		  	  teKeyEvent.clearContent();
 		  	  teKeyEvent.clearCmd();
 		  }
 		   if(teKeyEvent.getCmd().equals("save")){ //save file 
-		  	 teKeyEvent.saveFile(teKeyEvent.fileName);
-		  	 teKeyEvent.clearCmd();
+		   	   if( teKeyEvent.getParameter().isEmpty()){
+				 teKeyEvent.saveFile(teKeyEvent.fileName);
+				 teKeyEvent.clearCmd();
+		  	   }
+		  	   else{
+					teKeyEvent.fileName =teKeyEvent.setDefaultFName( teKeyEvent.getParameter());
+					teKeyEvent.saveFile(teKeyEvent.fileName);
+					teKeyEvent.clearCmd();
+				}
 		  }
 		    if(teKeyEvent.getCmd().equals("hide")){ //hide 
 		  	 teKeyEvent.hideOn();
+		  	 teKeyEvent.clearCmd();
+		  }
+		  if(teKeyEvent.getCmd().equals("now")){ //hide 
+		  	 teKeyEvent.openNow();
+		  	 teKeyEvent.loadContent();
 		  	 teKeyEvent.clearCmd();
 		  }
 		   if(teKeyEvent.getCmd().equals("exit")){ //exit 

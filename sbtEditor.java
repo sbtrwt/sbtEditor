@@ -21,7 +21,7 @@ import java.awt.*;
 	 public Texteditor()  //constructor Texteditor
 	 {  
 	 	 //createFilepath(filepath);
-	 	 this.fileName= filepath + getDefaultFName();
+	 	 this.fileName= setDefaultFName( getDefaultFName());
 	 	 System.out.println(this.fileName);
 	 	 setUndecorated(true);//title bar removed
 	
@@ -190,7 +190,12 @@ import java.awt.*;
 		DateFormat df = new SimpleDateFormat("yyyyMMdd");
 		Date dateobj = new Date();
 		System.out.println(df.format(dateobj)+".sbt");
-		return df.format(dateobj)+".sbt";
+		return df.format(dateobj);
+	}
+	public String setDefaultFName(String fname){
+		
+		System.out.println(filepath + fname +".sbt");
+		return (filepath + fname +".sbt");
 	}
 	public void createFilepath(String path){
 	 File file = new File(path);
@@ -204,7 +209,16 @@ import java.awt.*;
 	}
 	
 	//command functions
-	public String getCmd(){return tfCmd.getText();}
+	public String getCmd(){return tfCmd.getText().split(" ")[0];}
+	public String getParameter(){
+		String strParam = "";
+		String strChk[] =tfCmd.getText().split(" "); 
+		if(strChk.length > 1)
+			{
+				strParam = strChk[1];
+			}
+		return strParam;
+	}
 	public void loadContent(){
 		try{
 			taMainContent.setText(EditFile.load(fileName));//Loading previous content
@@ -218,6 +232,9 @@ import java.awt.*;
 	}
 	public void hideOn(){
 			this.setVisible(false);//hide
+	}
+	public void openNow(){
+		 this.fileName= setDefaultFName( getDefaultFName()); // set current date file
 	}
 	public void exit(){ //exit
 		System.out.println("Exiting...");
